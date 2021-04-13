@@ -1,71 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Radio.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">radioman</a> &gt; <a href="index.source.html" class="el_package">ru.netology.domain</a> &gt; <span class="el_source">Radio.java</span></div><h1>Radio.java</h1><pre class="source lang-java linenums">package ru.netology.domain;
 
 <span class="fc" id="L3">public class Radio {</span>
-    String name;
-<span class="fc" id="L5">    private int currentVolume =5;</span>
-<span class="fc" id="L6">    int maxVolume = 10;</span>
-<span class="fc" id="L7">    int minVolume = 0;</span>
-<span class="fc" id="L8">    int currentRadioStation = 5;</span>
-<span class="fc" id="L9">    int maxRadioStation = 9;</span>
-<span class="fc" id="L10">    int minRadioStation = 0;</span>
-    boolean on;
+    private int volume;
+<span class="fc" id="L5">    private int maxVolume = 10;</span>
+<span class="fc" id="L6">    private int minVolume = 0;</span>
+    private int radioStation;
+<span class="fc" id="L8">    private int maxRadioStation = 9;</span>
+<span class="fc" id="L9">    private int minRadioStation = 0;</span>
 
-    public int changeTheStation(int intendedStation) {
-<span class="pc bpc" id="L14" title="1 of 4 branches missed.">        if (intendedStation &lt;= 9 &amp;&amp; intendedStation &gt;= 0) {</span>
-<span class="fc" id="L15">            currentRadioStation = intendedStation;</span>
-        }
-<span class="fc" id="L17">        return currentRadioStation;</span>
+    public int getradioStation() {
+<span class="fc" id="L12">        return radioStation;</span>
     }
-    public void changeTheStationByNextButton() {
-<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (currentRadioStation == maxRadioStation) {</span>
-<span class="fc" id="L21">            currentRadioStation = 0;</span>
-        } else {
-<span class="fc" id="L23">            currentRadioStation += 1;</span>
+
+    public int setRadioStation(int radioStation) {
+<span class="fc bfc" id="L16" title="All 4 branches covered.">        if (radioStation &lt;= maxRadioStation &amp;&amp; radioStation &gt;= minRadioStation) {</span>
+<span class="fc" id="L17">            this.radioStation = radioStation;</span>
         }
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L19">        return this.radioStation;</span>
+    }
+
+    public void changeTheStationByNextButton() {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (radioStation == maxRadioStation) {</span>
+<span class="fc" id="L24">            radioStation = minRadioStation;</span>
+<span class="fc" id="L25">            return;</span>
+        }
+<span class="fc" id="L27">        radioStation++;</span>
+<span class="fc" id="L28">    }</span>
 
     public void changeTheStationByPrevButton() {
-<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (currentRadioStation == minRadioStation) {</span>
-<span class="fc" id="L29">            currentRadioStation = 9;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (radioStation == minRadioStation) {</span>
+<span class="fc" id="L32">            radioStation = maxRadioStation;</span>
+<span class="fc" id="L33">            return;</span>
         } else {
-<span class="fc" id="L31">            currentRadioStation -= 1;</span>
+<span class="fc" id="L35">            radioStation--;</span>
         }
-<span class="fc" id="L33">    }</span>
+<span class="fc" id="L37">    }</span>
 
+    public int getVolume() {
+<span class="fc" id="L40">        return volume;</span>
+    }
+
+    public void setVolume(int volume) {
+<span class="fc" id="L44">        this.volume = volume;</span>
+<span class="fc" id="L45">    }</span>
 
     public void increaseVolume() {
-<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (currentVolume == maxVolume) {</span>
-<span class="nc" id="L38">            return;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (volume == maxVolume) {</span>
+<span class="fc" id="L49">            return;</span>
         } else {
-<span class="fc" id="L40">            currentVolume += 1;</span>
+<span class="fc" id="L51">            volume++;</span>
         }
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L53">    }</span>
 
     public void decreaseVolume() {
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (currentVolume == minVolume) {</span>
-<span class="fc" id="L46">            return;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (volume == minVolume) {</span>
+<span class="fc" id="L57">            return;</span>
         } else {
-<span class="fc" id="L48">            currentVolume -= 1;</span>
+<span class="fc" id="L59">            volume--;</span>
 
         }
-<span class="fc" id="L51">    }</span>
-
-    public int getCurrentVolume() {
-<span class="fc" id="L54">        return currentVolume;</span>
-    }
-
-    public void setCurrentVolume(int currentVolume) {
-<span class="fc" id="L58">        this.currentVolume = currentVolume;</span>
-<span class="fc" id="L59">    }</span>
-
-
-    public int getCurrentRadioStation() {
-<span class="fc" id="L63">        return currentRadioStation;</span>
-    }
-
-    public void setCurrentRadioStation(int currentRadioStation) {
-<span class="fc" id="L67">        this.currentRadioStation = currentRadioStation;</span>
-<span class="fc" id="L68">    }</span>
+<span class="fc" id="L62">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
